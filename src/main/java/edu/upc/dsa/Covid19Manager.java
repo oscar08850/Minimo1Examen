@@ -34,6 +34,8 @@ public interface Covid19Manager {
     public User getUserById(String idUser);
     public void getDescripcionByUser(String nombre);
     public Vacuna getVacunaByName(String marcaVacuna);
+    public List<User> findAll();
+
 
 
 

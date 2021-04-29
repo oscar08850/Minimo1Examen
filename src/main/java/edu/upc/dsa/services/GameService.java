@@ -73,6 +73,23 @@ public class GameService {
         return Response.status(201).build();
     }
 
+    @GET
+    @ApiOperation(value = "get all Users", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = User.class, responseContainer="List"),
+    })
+    @Path("/listaUsuarios")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getUsers() {
+
+        List<User> users = this.pm.findAll();
+        GenericEntity<List<User>> entity = new GenericEntity<List<User>>(users) {};
+        return Response.status(201).entity(entity).build();
+
+    }
+
+
+
 
 }
 

@@ -163,4 +163,12 @@ public class Covid19ManagerImpl implements Covid19Manager {
             log.info("Fecha: " + p.getFecha() + ", Descripcion: " + p.getDescripcion());
         }
     }
+
+    public List<User> findAll(){
+        if (hashUsuarios.size() != 0){
+            List<User> list = new LinkedList<>(hashUsuarios.values());
+            return list;
+        }
+        return null;
+    }
 }
