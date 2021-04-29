@@ -33,6 +33,8 @@ public interface Covid19Manager {
     public void addUser(String nombre, String vacuna, String fecha);
     public User getUserById(String idUser);
     public void getDescripcionByUser(String nombre);
+    public Vacuna getVacunaByName(String marcaVacuna);
+
 
 
 

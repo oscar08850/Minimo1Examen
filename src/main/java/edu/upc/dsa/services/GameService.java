@@ -31,7 +31,7 @@ public class GameService {
     public GameService() {
         this.pm = Covid19ManagerImpl.getInstance();
 
-        if (this.pm.usuariosSize()==0 && inicio) {
+        if (this.pm.usuariosSize() == 0 && inicio) {
             //
             //
             Vacuna vacuna1 = new Vacuna("Astrazeneca");
@@ -45,20 +45,39 @@ public class GameService {
 
             //Creamos los usuarios (addUser)
             //Añadimos los usuarios al HashMap
-            pm.addUser("Oscar",null, null);
-            pm.addUser("Alex",null, null);
-            pm.addUser("Toni",null, null);
+            pm.addUser("Oscar", null, null);
+            pm.addUser("Alex", null, null);
+            pm.addUser("Toni", null, null);
 
-            pm.addVacunaAPersona("Oscar","Astrazeneca","1");
-            pm.addVacunaAPersona("Alex","Pfizer","2");
+            pm.addVacunaAPersona("Oscar", "Astrazeneca", "1");
+            pm.addVacunaAPersona("Alex", "Pfizer", "2");
         }
         inicio = false;
-        }
+    }
+
+    @PUT
+    @ApiOperation(value = "poner vacuna", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 404, message = "Track not found")
+    })
+
+    @Path("/AddVacuna/{idUser}{marcaVacuna}{fecha}")
+
+    public Response addObjeto(@PathParam("idUser") String idUser, @PathParam("marcaVacuna") String marcaVacuna, @PathParam("fecha") String fecha) {
+
+        User user = pm.getUserById(idUser);
+        Vacuna vacuna = pm.getVacunaByName(marcaVacuna);
+        pm.addVacunaAPersona(idUser, marcaVacuna, fecha);
+        if (user == null || marcaVacuna == null || fecha == null) return Response.status(404).build();
+        return Response.status(201).build();
     }
 
 
-
-
-
-
 }
+
+
+
+
+
+
